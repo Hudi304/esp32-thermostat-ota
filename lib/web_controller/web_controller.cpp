@@ -13,26 +13,26 @@ void updateLed(Request &req, Response &res)
     res.print(ledOn);
 }
 
-void get_status(Request &req, Response &res)
-{
-    String response = String("");
-    response.concat("start_temp:");
-    response.concat(start_at_temp_C);
-    response.concat("|");
+// void get_status(Request &req, Response &res)
+// {
+//     String response = String("");
+//     response.concat("start_temp:");
+//     response.concat(start_at_temp_C);
+//     response.concat("|");
 
-    response.concat("ambient_temp:");
-    response.concat(ambient_t_C);
-    response.concat("|");
+//     response.concat("ambient_temp:");
+//     response.concat(ambient_t_C);
+//     response.concat("|");
 
-    response.concat("stop_temp:");
-    response.concat(stop_at_temp_C);
-    response.concat("|");
+//     response.concat("stop_temp:");
+//     response.concat(stop_at_temp_C);
+//     response.concat("|");
 
-    response.concat("heater_status:");
-    response.concat(board_status_led);
+//     response.concat("heater_status:");
+//     response.concat(board_status_led);
 
-    res.print(response);
-}
+//     res.print(response);
+// }
 
 void update_start_temp(Request &req, Response &res)
 {
@@ -61,7 +61,7 @@ void configure_app(Application &app)
     app.get("/led", &readLed);
     app.put("/led", &updateLed);
 
-    app.get("/status", &get_status);
+    app.get("/status", &get_status_handler);
     app.put("/start-temp", &update_start_temp);
     app.put("/stop-temp", &update_stop_temp);
 

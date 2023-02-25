@@ -1,0 +1,16 @@
+In order to test this code you will need to got to the PIO menu.
+In the advanced tab you will see test.
+Press test.
+Press the boot button on the ESP32.
+wait.
+The terminal will demand a reboot of the board.
+reboot the board (press EN btn)
+ 
+
+ ALL THE FOLDERS THAT CONTAIN TESTS NEED TO START with 'test_'
+    the .cpp files in those folders will be called.
+
+In order not to make the testing process a lengthy endeavor there
+is a single file called (test/test_c/test.cpp).
+
+Write your tests in the test_c directory and include the .h file in test.cpp.

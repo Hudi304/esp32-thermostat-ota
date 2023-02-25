@@ -23,7 +23,6 @@ void update_state(float ambient_t_C, float min_temp, float max_temp)
             state = HEATING_UP;
             digitalWrite(RELAY_PIN, true);
             digitalWrite(LED_BUILTIN, true);
-            Serial.println("cooling off");
         }
         break;
 
@@ -33,7 +32,6 @@ void update_state(float ambient_t_C, float min_temp, float max_temp)
             state = COOLING_OFF;
             digitalWrite(RELAY_PIN, false);
             digitalWrite(LED_BUILTIN, false);
-            Serial.println("heating up");
         }
         break;
 
