@@ -41,7 +41,7 @@ void setup()
   server.begin();
   sensors.begin();
 
-  set_up_mDNS("thermostat");
+  // set_up_mDNS("thermostat");
 
   setup_OTA();
 }

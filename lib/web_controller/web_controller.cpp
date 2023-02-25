@@ -12,27 +12,6 @@ void updateLed(Request &req, Response &res)
     res.print(ledOn);
 }
 
-// void get_status(Request &req, Response &res)
-// {
-//     String response = String("");
-//     response.concat("start_temp:");
-//     response.concat(start_at_temp_C);
-//     response.concat("|");
-
-//     response.concat("ambient_temp:");
-//     response.concat(ambient_t_C);
-//     response.concat("|");
-
-//     response.concat("stop_temp:");
-//     response.concat(stop_at_temp_C);
-//     response.concat("|");
-
-//     response.concat("heater_status:");
-//     response.concat(board_status_led);
-
-//     res.print(response);
-// }
-
 void update_start_temp(Request &req, Response &res)
 {
     String request_str = req.readString();
