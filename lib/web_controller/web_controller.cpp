@@ -1,10 +1,9 @@
+#include "web_controller.h"
 #include "StaticFiles.h"
-#include "variables.h"
-
 
 void readLed(Request &req, Response &res)
 {
-    res.print(ledOn);
+    res.print(board_status_led);
 }
 
 void updateLed(Request &req, Response &res)
@@ -30,7 +29,7 @@ void get_status(Request &req, Response &res)
     response.concat("|");
 
     response.concat("heater_status:");
-    response.concat(ledOn);
+    response.concat(board_status_led);
 
     res.print(response);
 }
@@ -38,22 +37,22 @@ void get_status(Request &req, Response &res)
 void update_start_temp(Request &req, Response &res)
 {
     String request_str = req.readString();
-    Serial.print("request_str : ");
-    Serial.println(request_str);
+    // Serial.print("request_str : ");
+    // Serial.println(request_str);
     float to_float = request_str.toFloat();
-    Serial.print("to_float : ");
-    Serial.println(to_float);
+    // Serial.print("to_float : ");
+    // Serial.println(to_float);
     start_at_temp_C = to_float;
 }
 
 void update_stop_temp(Request &req, Response &res)
 {
     String request_str = req.readString();
-    Serial.print("request_str : ");
-    Serial.println(request_str);
+    // Serial.print("request_str : ");
+    // Serial.println(request_str);
     float to_float = request_str.toFloat();
-    Serial.print("to_float : ");
-    Serial.println(to_float);
+    // Serial.print("to_float : ");
+    // Serial.println(to_float);
     stop_at_temp_C = to_float;
 }
 

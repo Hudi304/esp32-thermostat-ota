@@ -1,3 +1,5 @@
+#include "common.h"
+
 void connect_to_wifi(const char *WIFI_SSID, const char *WIFI_PASSWORD)
 {
     Serial.print(".\n");
