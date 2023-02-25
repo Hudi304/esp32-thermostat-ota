@@ -1,5 +1,4 @@
 #include "web_controller.h"
-#include "StaticFiles.h"
 
 void readLed(Request &req, Response &res)
 {

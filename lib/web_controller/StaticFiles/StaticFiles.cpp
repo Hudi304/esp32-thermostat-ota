@@ -1,3 +1,5 @@
+#include "StaticFiles.h"
+
 void static_favicon_ico(Request &req, Response &res)
 {
     P(static_favicon_ico_0) = {

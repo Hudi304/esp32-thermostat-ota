@@ -2,7 +2,10 @@
 #ifndef __WEB_CONTROLLER_TESTS__
 #define __WEB_CONTROLLER_TESTS__
 
+#include <Arduino.h>
+#include <unity.h>
 #include "variables.h"
+#include "handlers/handlers.h"
 
 void test_get_status_response_builder();
 

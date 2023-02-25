@@ -1,6 +1,3 @@
-#include <Arduino.h>
-#include <unity.h>
-#include "temp.h"
 #include "temp_controller_tests.h"
 
 void setUp(void)

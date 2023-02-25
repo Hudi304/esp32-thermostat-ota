@@ -1,27 +1,4 @@
-#include <Arduino.h>
-#include <unity.h>
 #include "web_hndl_tests.h"
-
-String get_status_response_builder()
-{
-  String response = String("");
-  response.concat("start_temp:");
-  response.concat(start_at_temp_C);
-  response.concat("|");
-
-  response.concat("ambient_temp:");
-  response.concat(ambient_t_C);
-  response.concat("|");
-
-  response.concat("stop_temp:");
-  response.concat(stop_at_temp_C);
-  response.concat("|");
-
-  response.concat("heater_status:");
-  response.concat(board_status_led);
-
-  return response;
-}
 
 void test_get_status_response_builder()
 {
