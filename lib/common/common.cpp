@@ -1,5 +1,12 @@
 #include "common.h"
 
+void debugPrint(const char *msg)
+{
+#ifndef DEBUG_MODE
+    Serial.print(msg);
+#endif
+}
+
 void connect_to_wifi(const char *WIFI_SSID, const char *WIFI_PASSWORD)
 {
     Serial.print(".\n");

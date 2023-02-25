@@ -7,6 +7,8 @@
 #define RELAY_PIN 26
 #define LED_BUILTIN 2
 
+#define DEBUG_MODE false
+
 #define ONE_WIRE_BUS 4 // as we connected it on D2 the GPIO of it is 4 (Check NodeMCU pinout)
 
 extern unsigned long sec_since_on;
