@@ -30,7 +30,7 @@ void process_web_client(WiFiServer &server, Application &app)
     }
 }
 
-void millis_sec()
+void compute_seconds_since_on()
 {
     curr_millis = millis();
     unsigned long elapsed_secs = 0;

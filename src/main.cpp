@@ -32,23 +32,30 @@ Application app;
 void setup()
 {
 
+  // Pins
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(LED_BUILTIN, 0);
   Serial.begin(115200);
+
+  // wifi connection
   connect_to_wifi(WIFI_SSID, WIFI_PASSWORD);
-  configure_app(app);
+  // server_setup
+  configure_server(app);
+
   server.begin();
   sensors.begin();
 
-  // set_up_mDNS("thermostat");
+  // makes the IP of the device irrelevant
+  // you can find the app at http://thermostat.local
+  set_up_mDNS("thermostat");
 
-  setup_OTA();
+  // sets up a simple over the air (OTA) config
+  set_up_OTA();
 }
 void loop()
 {
-  //! Do not delete
-  millis_sec();
+  compute_seconds_since_on();
   process_web_client(server, app);
   check_temp(ambient_t_C, sensors);
   ArduinoOTA.handle();

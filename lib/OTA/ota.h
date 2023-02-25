@@ -4,6 +4,6 @@
 #include <ArduinoOTA.h>
 #include "variables.h"
 
-void setup_OTA();
+void set_up_OTA();
 
 #endif

@@ -1,13 +1,13 @@
 #include "ota.h"
 
-void setup_OTA()
+void set_up_OTA()
 {
 
   // Port defaults to 3232
   // ArduinoOTA.setPort(3232);
 
   // Hostname defaults to esp3232-[MAC]
-  ArduinoOTA.setHostname("server_url");
+  // ArduinoOTA.setHostname("server_url");
 
   // No authentication by default
   // ArduinoOTA.setPassword("admin");

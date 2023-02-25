@@ -6,6 +6,6 @@
 #include "handlers/handlers.h"
 #include "StaticFiles/StaticFiles.h"
 
-void configure_app(Application &app);
+void configure_server(Application &app);
 
 #endif
