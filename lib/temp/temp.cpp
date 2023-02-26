@@ -1,25 +1,44 @@
 #include "temp.h"
 #include "common.h"
 
-void update_state(float ambient_t_C, float min_temp, float max_temp)
+void heat_up()
+{
+  state = HEATING_UP;
+
+  status_led_state = HIGH;
+  heater_pin_state = LOW;
+
+  digitalWrite(LED_BUILTIN, status_led_state);
+  digitalWrite(RELAY_PIN, heater_pin_state);
+}
+
+void cool_off()
+{
+
+  state = COOLING_OFF;
+
+  status_led_state = LOW;
+  heater_pin_state = HIGH;
+
+  digitalWrite(LED_BUILTIN, status_led_state);
+  digitalWrite(RELAY_PIN, heater_pin_state);
+}
+
+void update_state(float ambient, float min_temp, float max_temp)
 {
   switch (state)
   {
   case COOLING_OFF:
-    if (ambient_t_C < min_temp)
+    if (ambient < min_temp)
     {
-      state = HEATING_UP;
-      digitalWrite(RELAY_PIN, true);
-      digitalWrite(LED_BUILTIN, true);
+      heat_up();
     }
     break;
 
   case HEATING_UP:
-    if (ambient_t_C > max_temp)
+    if (ambient > max_temp)
     {
-      state = COOLING_OFF;
-      digitalWrite(RELAY_PIN, false);
-      digitalWrite(LED_BUILTIN, false);
+      cool_off();
     }
     break;
 
@@ -42,14 +61,16 @@ void update_state(float ambient_t_C, float min_temp, float max_temp)
 void check_temp(float &ambient_t_C, DallasTemperature &sensors)
 {
   curr_check_no = sec_since_on / CHECK_TEMP_EVERY;
-  if (curr_check_no == prev_check_no)
+  bool should_not_read_sensors = curr_check_no == prev_check_no;
+
+  if (should_not_read_sensors)
   {
     return;
   }
 
   sensors.requestTemperatures();
   ambient_t_C = sensors.getTempCByIndex(0);
-  update_state(ambient_t_C, start_at_temp_C, stop_at_temp_C);
+  update_state(ambient_t_C, min_temp, max_temp);
   debugPrint("here");
   prev_check_no = curr_check_no;
 }

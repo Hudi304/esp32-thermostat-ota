@@ -4,7 +4,7 @@ String get_status_response_builder()
 {
     String response = String("");
     response.concat("start_temp:");
-    response.concat(start_at_temp_C);
+    response.concat(min_temp);
     response.concat("|");
 
     response.concat("ambient_temp:");
@@ -12,11 +12,22 @@ String get_status_response_builder()
     response.concat("|");
 
     response.concat("stop_temp:");
-    response.concat(stop_at_temp_C);
+    response.concat(max_temp);
     response.concat("|");
 
-    response.concat("heater_status:");
-    response.concat(board_status_led);
+    response.concat("heater_pin_state:");
+    response.concat(heater_pin_state);
+
+    response.concat("state:");
+
+    if (state == HEATING_UP)
+    {
+        response.concat("HEATING_UP");
+    }
+    else
+    {
+        response.concat("COOLING_OFF");
+    }
 
     return response;
 }
@@ -31,19 +42,24 @@ void put_start_temp(Request &req, Response &res)
 {
     String request_str = req.readString();
     float to_float = request_str.toFloat();
-    start_at_temp_C = to_float;
+    min_temp = to_float;
 }
 
 void put_stop_temp(Request &req, Response &res)
 {
     String request_str = req.readString();
     float to_float = request_str.toFloat();
-    stop_at_temp_C = to_float;
+    max_temp = to_float;
 }
 
 void get_led_status(Request &req, Response &res)
 {
-    res.print(board_status_led);
+
+    heater_pin_state = !heater_pin_state;
+
+    // digitalWrite(RELAY_PIN, heater_pin_state);
+
+    res.print(heater_pin_state);
 }
 
 void put_led(Request &req, Response &res)

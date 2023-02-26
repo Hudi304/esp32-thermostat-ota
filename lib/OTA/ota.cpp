@@ -1,5 +1,11 @@
 #include "ota.h"
 
+void on_end()
+{
+  Serial.println("\nEnd");
+  ESP.restart();
+}
+
 void set_up_OTA()
 {
 
@@ -29,8 +35,7 @@ void set_up_OTA()
 
       // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
       Serial.println("Start updating " + type); })
-      .onEnd([]()
-             { Serial.println("\nEnd"); })
+      .onEnd(on_end)
       .onProgress([](unsigned int progress, unsigned int total)
                   { Serial.printf("Progress: %u%%\r", (progress / (total / 100))); })
       .onError([](ota_error_t error)

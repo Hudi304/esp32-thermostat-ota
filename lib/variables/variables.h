@@ -2,12 +2,22 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
 
-#define MAX_LONG 0xffffffff
-#define RELAY_PIN 26
-#define LED_BUILTIN 2
+#include "Arduino.h"
 
 #define DEBUG_MODE true
-#define ONE_WIRE_BUS 4 // as we connected it on D2 the GPIO of it is 4 (Check NodeMCU pinout)
+
+#define MAX_LONG 0xffffffff
+#define RELAY_PIN 26
+
+#define CHECK_TEMP_EVERY 1
+
+// GPIO 4 (D4) (right side 5th)
+extern const int ONE_WIRE_BUS;
+extern bool heater_pin_state;
+
+// GPIO 2 (__) (not exposed)
+extern const int LED_BUILTIN; // 2
+extern bool status_led_state;
 
 extern unsigned long sec_since_on;
 extern unsigned long curr_millis;
@@ -19,9 +29,9 @@ extern bool status;
 extern unsigned long curr_check_no;
 extern unsigned long prev_check_no;
 
-extern float start_at_temp_C;
+extern float min_temp;
 extern float ambient_t_C;
-extern float stop_at_temp_C;
+extern float max_temp;
 
 enum HEATER_STATE
 {

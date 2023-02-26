@@ -52,6 +52,35 @@ void setup()
 
   // sets up a simple over the air (OTA) config
   set_up_OTA();
+
+  delay(100);
+
+  sensors.requestTemperatures();
+  ambient_t_C = sensors.getTempCByIndex(0);
+
+  // TODO test this, there is a flicker on first boot
+
+  // lower then min => HEAT UP
+  if (ambient_t_C < min_temp)
+  {
+    state = HEATING_UP;
+    heater_pin_state = LOW;
+    digitalWrite(RELAY_PIN, heater_pin_state);
+  }
+  // higher then max => COOL_DOWN
+  else if (ambient_t_C > max_temp)
+  {
+    heater_pin_state = HIGH;
+    digitalWrite(RELAY_PIN, heater_pin_state);
+    state = COOLING_OFF;
+  }
+  // between => COOL_DOWN
+  else
+  {
+    heater_pin_state = HIGH;
+    digitalWrite(RELAY_PIN, heater_pin_state);
+    state = COOLING_OFF;
+  }
 }
 void loop()
 {
