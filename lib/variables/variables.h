@@ -3,21 +3,25 @@
 #define VARIABLES_H
 
 #include "Arduino.h"
+#include "pin.h"
 
 #define DEBUG_MODE true
 
 #define MAX_LONG 0xffffffff
-#define RELAY_PIN 26
 
 #define CHECK_TEMP_EVERY 1
 
 // GPIO 4 (D4) (right side 5th)
 extern const int ONE_WIRE_BUS;
+
+extern const int RELAY_PIN; // 26
 extern bool heater_pin_state;
 
 // GPIO 2 (__) (not exposed)
 extern const int LED_BUILTIN; // 2
 extern bool status_led_state;
+
+extern Pin builtin_led;
 
 extern unsigned long sec_since_on;
 extern unsigned long curr_millis;

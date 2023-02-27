@@ -15,12 +15,6 @@
 #include "mDNS.h"
 #include "ota.h"
 
-// #define WIFI_SSID "TechQuarter"
-// #define WIFI_PASSWORD "!techP455"
-
-// #define WIFI_SSID "Redmi"
-// #define WIFI_PASSWORD "12345678"
-
 #define WIFI_SSID "UPC555516D"
 #define WIFI_PASSWORD "RshmdceznMv6"
 
@@ -31,13 +25,11 @@ Application app;
 
 void setup()
 {
-
   // Pins
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(LED_BUILTIN, 0);
   Serial.begin(115200);
-
   // wifi connection
   connect_to_wifi(WIFI_SSID, WIFI_PASSWORD);
   // server_setup
@@ -46,42 +38,16 @@ void setup()
   server.begin();
   sensors.begin();
 
-  // makes the IP of the device irrelevant
   // you can find the app at http://thermostat.local
   set_up_mDNS("thermostat");
-
   // sets up a simple over the air (OTA) config
-  set_up_OTA();
+  set_up_OTA("thermostat");
 
   delay(100);
 
-  sensors.requestTemperatures();
-  ambient_t_C = sensors.getTempCByIndex(0);
-
-  // TODO test this, there is a flicker on first boot
-
-  // lower then min => HEAT UP
-  if (ambient_t_C < min_temp)
-  {
-    state = HEATING_UP;
-    heater_pin_state = LOW;
-    digitalWrite(RELAY_PIN, heater_pin_state);
-  }
-  // higher then max => COOL_DOWN
-  else if (ambient_t_C > max_temp)
-  {
-    heater_pin_state = HIGH;
-    digitalWrite(RELAY_PIN, heater_pin_state);
-    state = COOLING_OFF;
-  }
-  // between => COOL_DOWN
-  else
-  {
-    heater_pin_state = HIGH;
-    digitalWrite(RELAY_PIN, heater_pin_state);
-    state = COOLING_OFF;
-  }
+  init_state_machine(sensors);
 }
+
 void loop()
 {
   compute_seconds_since_on();

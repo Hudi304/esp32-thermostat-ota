@@ -4,6 +4,6 @@
 #include <ArduinoOTA.h>
 #include "variables.h"
 
-void set_up_OTA();
+void set_up_OTA(const char *hostName);
 
 #endif

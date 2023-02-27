@@ -4,9 +4,10 @@
 #include <DallasTemperature.h>
 #include "variables.h"
 
-
 void check_temp(float &ambient_t_C, DallasTemperature &sensors);
 
 void update_state(float ambient_t_C, float start_at_temp_C, float stop_at_temp_C);
+
+void init_state_machine(DallasTemperature &sensors);
 
 #endif // TEMPERATURE_CONTROL_H

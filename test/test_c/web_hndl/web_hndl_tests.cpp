@@ -3,9 +3,9 @@
 void test_get_status_response_builder()
 {
   // Arrange
-  start_at_temp_C = 20.0;
+  min_temp = 20.0;
   ambient_t_C = 23.5;
-  stop_at_temp_C = 25.0;
+  max_temp = 25.0;
   board_status_led = HIGH;
   String expected = "start_temp:20.00|ambient_temp:23.50|stop_temp:25.00|heater_status:1";
 
@@ -19,9 +19,9 @@ void test_get_status_response_builder()
 void test_get_status_response_builder_with_negative_temperatures()
 {
   // Arrange
-  start_at_temp_C = -10.0;
+  min_temp = -10.0;
   ambient_t_C = -5.5;
-  stop_at_temp_C = 0.0;
+  max_temp = 0.0;
   board_status_led = LOW;
   String expected = "start_temp:-10.00|ambient_temp:-5.50|stop_temp:0.00|heater_status:0";
 
@@ -35,9 +35,9 @@ void test_get_status_response_builder_with_negative_temperatures()
 void test_get_status_response_builder_with_zero_temperatures()
 {
   // Arrange
-  start_at_temp_C = 0.0;
+  min_temp = 0.0;
   ambient_t_C = 0.0;
-  stop_at_temp_C = 0.0;
+  max_temp = 0.0;
   board_status_led = HIGH;
   String expected = "start_temp:0.00|ambient_temp:0.00|stop_temp:0.00|heater_status:1";
 
@@ -51,9 +51,9 @@ void test_get_status_response_builder_with_zero_temperatures()
 void test_get_status_response_builder_with_decimal_rounding()
 {
   // Arrange
-  start_at_temp_C = 10.12345;
+  min_temp = 10.12345;
   ambient_t_C = 15.6789;
-  stop_at_temp_C = 20.4321;
+  max_temp = 20.4321;
   board_status_led = HIGH;
   String expected = "start_temp:10.12|ambient_temp:15.68|stop_temp:20.43|heater_status:1";
 
