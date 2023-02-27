@@ -14,14 +14,24 @@
 #include "web_controller.h"
 #include "mDNS.h"
 #include "ota.h"
+#include "socket_controller.h"
 
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
+
+// TODO move these in a separate file that should be in gitignore
 #define WIFI_SSID "UPC555516D"
 #define WIFI_PASSWORD "RshmdceznMv6"
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
+// does this do anything?
 WiFiServer server(80);
 Application app;
+
+// we might not need the other application at all
+AsyncWebServer async_server(81);
+AsyncWebSocket ws("/ws");
 
 void setup()
 {
@@ -46,6 +56,8 @@ void setup()
   delay(100);
 
   init_state_machine(sensors);
+
+  initWebSocket(&ws, &async_server);
 }
 
 void loop()

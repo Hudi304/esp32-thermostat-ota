@@ -19,14 +19,28 @@ size_t debug(char c)
 
 #else
 
-size_t debug(){
-    return 0};
+size_t debug(const char *msg)
+{
+  return 0;
+}
+
+size_t debug(const String &s)
+{
+  return 0;
+}
+
+size_t debug(char c)
+{
+  return 0;
+}
 
 #endif
 
 void connect_to_wifi(const char *WIFI_SSID, const char *WIFI_PASSWORD)
 {
   Serial.print(".\n");
+
+  debug(".\n");
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED)
