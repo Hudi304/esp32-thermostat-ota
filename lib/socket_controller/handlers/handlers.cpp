@@ -37,6 +37,9 @@ void on_message(AsyncWebSocket *socket, AsyncWebSocketClient *client, void *arg,
   {
     debug("VALID WS MESSAGE \n");
 
+    AsyncWebSocket::AsyncWebSocketClientLinkedList client_list = socket->getClients();
+    // socket->setAuthentication
+
     data[len] = 0;
     String dataString = String((const char *)data);
     if (strcmp((char *)data, "toggle") == 0)
