@@ -15,14 +15,7 @@
 #include "mDNS.h"
 #include "ota.h"
 
-// #define WIFI_SSID "TechQuarter"
-// #define WIFI_PASSWORD "!techP455"
-
-// #define WIFI_SSID "Redmi"
-// #define WIFI_PASSWORD "12345678"
-
-#define WIFI_SSID "UPC555516D"
-#define WIFI_PASSWORD "RshmdceznMv6"
+#include "credentials.h"
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
@@ -65,6 +58,11 @@ void setup()
   {
     state = HEATING_UP;
     heater_pin_state = LOW;
+    // TODO make a class that can be instantiated
+    // in the variables.cpp file
+    // that has as methods, the pinNo, negativeLogic boolean
+    // setActualHigh
+    // setActualLow
     digitalWrite(RELAY_PIN, heater_pin_state);
   }
   // higher then max => COOL_DOWN
