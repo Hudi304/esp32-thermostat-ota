@@ -95,6 +95,6 @@ void check_temp(float &ambient_t_C, DallasTemperature &sensors)
   sensors.requestTemperatures();
   ambient_t_C = sensors.getTempCByIndex(0);
   update_state(ambient_t_C, min_temp, max_temp);
-  debugPrint("here");
+  // debugPrint("here");
   prev_check_no = curr_check_no;
 }
