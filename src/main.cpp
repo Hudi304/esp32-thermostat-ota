@@ -19,9 +19,7 @@
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 
-// TODO move these in a separate file that should be in gitignore
-#define WIFI_SSID "UPC555516D"
-#define WIFI_PASSWORD "RshmdceznMv6"
+#include "credentials.h"
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
