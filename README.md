@@ -2,6 +2,8 @@
 
 This project features the Back End (firmware) of an I.O.T. system that is able to controll any gas heater.
 
+## UNIT TEST THE CODE ON THE BOARD (PlatformIO Test) BEFORE COMMITING CODE
+
 ## Features: 
 - Serves a react app that consumes the API
 - Exposes a number of endpoints that let the UI controll the system
